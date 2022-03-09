@@ -50,7 +50,9 @@ class BottomNavActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_mensaje -> {
-                Snackbar.make(binding.root, navController.currentDestination?.label.toString(), Snackbar.LENGTH_SHORT).show()
+                val mensaje = navController.currentDestination?.label.let { it } ?: "Sin título"
+                //val mensaje = supportActionBar?.title?.toString() ?: "Sin título"
+                Snackbar.make(binding.root, mensaje , Snackbar.LENGTH_SHORT).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)

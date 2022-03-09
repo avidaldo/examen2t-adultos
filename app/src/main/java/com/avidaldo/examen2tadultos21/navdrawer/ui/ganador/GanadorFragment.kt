@@ -14,19 +14,11 @@ class GanadorFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentGanadorBinding.inflate(inflater, container, false)
-
-        val ganadorViewModel =
-            ViewModelProvider(this)[GanandorViewModel::class.java]
-
-
-        ganadorViewModel.text.observe(viewLifecycleOwner) {
-            binding.textSlideshow.text = it
-        }
         return binding.root
     }
 
@@ -34,4 +26,16 @@ class GanadorFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        GanadorFragmentArgs.fromBundle(requireArguments()).ganador?.let {
+                binding.tvGanador.visibility = View.VISIBLE
+                binding.textSlideshow.text = it
+        }
+
+    }
+
+
 }

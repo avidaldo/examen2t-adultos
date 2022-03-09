@@ -30,14 +30,11 @@ class NavDrawerActivity : AppCompatActivity() {
 
 /*        appBarConfiguration = AppBarConfiguration(setOf(
             R.id.nav_home, R.id.nav_juego, R.id.nav_ganador), binding.drawerLayout)*/
-
         appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
     }
-
-
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
